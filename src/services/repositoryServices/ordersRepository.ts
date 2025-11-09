@@ -6,6 +6,11 @@ class OrdersRepository {
         const request = pool.request();
         // Add your SQL query and parameters here
     }
+    /**
+     * 
+     * @param orderGuid 
+     * @returns 
+     */
 
     async getOrderByGuid(orderGuid: string): Promise<any> {
         try {
@@ -13,8 +18,8 @@ class OrdersRepository {
             const request = pool.request();
             // Add your SQL query and parameters here
 
-            const result = await request.query(`SELECT [guid] ,[order_code],[date_of_service] FROM [MLX].[orders].[orders] as o where o.guid='${orderGuid}' and is_deleted=0 `);
-            console.log(result.recordset);
+            const result = await request.query(`exec [orders].[spGetOrderByGuid] @order_guid='${orderGuid}'`);
+
             return result.recordset;
 
         } catch (error) {
