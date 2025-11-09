@@ -5,7 +5,7 @@ import PhysicianBusinessService from '../services/bussinessServices/physicianBus
 
 class PhysicianController {
      async getPhysicianByGuid (req: Request, res: Response): Promise<any> {   
-        debugger;
+      
         const physicianBusinessService = new PhysicianBusinessService();
         const { physicianGuid } = req.params;
         if (!physicianGuid) {
