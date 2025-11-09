@@ -3,6 +3,7 @@ import express from 'express';
 import mathRoutes from './src/routes/mathRoutes.js';
 import ordersRoutes from './src/routes/ordersRoute.js';
 import patientRoutes from './src/routes/patientRoutes.js';
+import physicianRoutes from './src/routes/physicianRoutes.js';
 import facilityRoutes from './src/routes/facilityRoutes.js';
 
 dotenv.config();
@@ -12,8 +13,8 @@ const port = 3000;
 app.use(express.json());
 app.use("/",mathRoutes);
 app.use("/orders",ordersRoutes);
-
 app.use("/patients", patientRoutes);
+app.use("/physicians", physicianRoutes);
 app.use("/facilities", facilityRoutes);  
 
 app.listen(port, () => {
