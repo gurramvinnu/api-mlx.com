@@ -21,7 +21,22 @@ class PhysicianRepository {
             } catch (error) {
                 return Promise.reject(error);
             }
-    
+        }   
+
+            async getAllphysicians(pageNumber: Number, pageSize: Number): Promise<any> {
+                try {
+                    const pool = await getMSSQLConnection();
+                    const request = pool.request();
+                    // Add your SQL query and parameters here
+        
+                    const result = await request.query( `exec [physician].[spGetAllphysicians] @pageNumber = '${pageNumber}',@pageSize = '${pageSize}'`);
+        
+                    return result.recordset;
+        
+                } catch (error) {
+                    return Promise.reject(error);
+                }
+            
         }
 
 }
