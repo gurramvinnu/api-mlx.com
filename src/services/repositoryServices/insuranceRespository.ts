@@ -33,8 +33,7 @@ class insuranceRepository {
     async getAllInsurances(pageNumber: number, pageSize: number): Promise<insurance[]> {
         try {
             const pool = await getMSSQLConnection();
-            const request = pool.request();
-    
+            const request = pool.request();    
             const result = await request.query(`
                 EXEC [insurance].[spGetAllInsurance] 
                 @PageNumber = ${pageNumber}, 
@@ -48,22 +47,19 @@ class insuranceRepository {
     async insuranceDeletedByGuid(insuranceGuid: string): Promise<{ insurance_guid: string, message: string }[]> {
         try {
             const pool = await getMSSQLConnection();
-            const request = pool.request();
-    
+            const request = pool.request();    
             const result = await request.query(`
                 UPDATE [MLX].[insurance].[insurance]
-                SET is_deleted = 1
+                SET is_deleted = 1,
+                modified_by = 'sa_user',
+                modified_date = GETDATE()
                 OUTPUT inserted.insurance_guid, 'Insurance deleted successfully' AS message
-                WHERE insurance_guid = '${insuranceGuid}';
-            `);
+                WHERE insurance_guid = '${insuranceGuid}';`
+            );
             return result.recordset;
-        } 
-        catch (error) {
+        } catch (error) {
             return Promise.reject(error);
         }
     }
-    
-    
 }
 export default insuranceRepository;
-    
