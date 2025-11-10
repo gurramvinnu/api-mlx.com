@@ -13,5 +13,9 @@ class InsurancesBussinessService {
         const insurancesRepository = new insuranceRepository();
         return await insurancesRepository.getAllInsurances(pagenumber, pagesize);
    }
+   async insuraneDeletedByGuid(insuranceGuid: string): Promise<{ insurance_guid: string; message: string; }[]> {
+        const insurancesRepository = new insuranceRepository();
+        return await insurancesRepository.insuranceDeletedByGuid(insuranceGuid);
+   }
 }
 export default new InsurancesBussinessService;

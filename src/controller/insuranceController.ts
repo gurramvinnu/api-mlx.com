@@ -31,7 +31,20 @@ async getAllInsurances(req: Request, res: Response, next: NextFunction): Promise
     }
   }
 
-}
+  async insuraneDeletedByGuid(req: Request, res: Response, next: NextFunction): Promise<any> {
+    try {
+        const service = insuranceBussinessService;
+        const { insuranceGuid } = req.params;
+        if (!insuranceGuid) {
+            return res.status(400).json({ error: "insuranceGuid parameter is required" });
+        }
+        const result = await service.insuraneDeletedByGuid(insuranceGuid);
+        return res.json({ result });
+    } catch (error) {
+        return next(error);
+    }
 
+}
+}
 
 export default new InsuranceController();
