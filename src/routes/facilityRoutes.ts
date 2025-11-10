@@ -6,4 +6,5 @@ const router = express.Router();
 router.get('/getFacilityByGuid/:facility_guid', FaccilityController.getFacilityByGuid);
 router.get('/getAllfacilities/:pageNumber/:pageSize', FaccilityController.getAllfacilities);
 
+
 export default router;
