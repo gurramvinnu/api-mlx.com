@@ -6,6 +6,11 @@ class FacilityBusinessService {
                const facilityRepository = new FacilityRepository();
                return await facilityRepository.getFacilityByGuid(facilityGuid);
           }
+
+          async getAllfacilities (pageNumber: number, PageSize: number){
+               const facilityRepository = new FacilityRepository();
+               return await facilityRepository.getAllfacilities(pageNumber, PageSize); 
+          }
 }
 
 export default FacilityBusinessService;
