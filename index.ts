@@ -12,7 +12,6 @@ const port = 3000;
 app.use(express.json());
 app.use("/",mathRoutes);
 app.use("/orders",ordersRoutes);
-
 app.use("/patients", patientRoutes);
 app.use("/facilities", facilityRoutes);  
 
