@@ -6,12 +6,10 @@ class InsuranceController {
  async getinsuranceByGuid(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
         const service = insuranceBussinessService; 
-
         const { insuranceGuid } = req.params;
         if (!insuranceGuid) {
             return res.status(400).json({ error: "insuranceGuid parameter is required" });
         }
-
         const result = await service.getInsuranceByGuid(insuranceGuid);
         return res.json({ result });
     } catch (error) {
@@ -19,6 +17,8 @@ class InsuranceController {
     }
  
 }
+
+
 async getAllInsurances(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
         const service = insuranceBussinessService;

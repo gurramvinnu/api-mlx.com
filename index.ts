@@ -20,7 +20,7 @@ app.use("/patients", patientRoutes);
 app.use("/facilities", facilityRoutes); 
 app.use("/insurance",insuranceRoutes) 
 app.use("/physicians", physicianRoutes);
-app.use("/facilities", facilityRoutes);  
+;  
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
