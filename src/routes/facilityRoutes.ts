@@ -5,4 +5,5 @@ const router = express.Router();
 
 router.get('/getFacilityByGuid/:facility_guid', FaccilityController.getFacilityByGuid);
 
+
 export default router;
