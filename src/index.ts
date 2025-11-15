@@ -2,12 +2,12 @@ import dotenv from 'dotenv';
 import express from 'express';
 import type { Request, Response, NextFunction } from 'express';
 
-import mathRoutes from './src/routes/mathRoutes.js';
-import ordersRoutes from './src/routes/ordersRoute.js';
-import physicianRoutes from './src/routes/physicianRoutes.js';
-import patientRoutes from './src/routes/patientRoutes.js';
-import facilityRoutes from './src/routes/facilityRoutes.js';
-import insuranceRoutes from './src/routes/insuranceRoutes.js';
+import mathRoutes from './routes/mathRoutes.js';
+import ordersRoutes from './routes/ordersRoute.js';
+import physicianRoutes from './routes/physicianRoutes.js';
+import patientRoutes from './routes/patientRoutes.js';
+import facilityRoutes from './routes/facilityRoutes.js';
+import insuranceRoutes from './routes/insuranceRoutes.js';
 
 dotenv.config();
 
