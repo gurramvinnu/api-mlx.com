@@ -12,7 +12,7 @@
 
     "skipLibCheck": true,
 
-    "types": ["node"]
+   "types": []
   },
   "include": ["src"]
 }
