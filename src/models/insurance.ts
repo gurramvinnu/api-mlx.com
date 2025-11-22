@@ -1,4 +1,5 @@
 export interface insurance {
+    INSURANCE_GUID: string;
     INSURANCE_ID: number;
     NAME: string;
     POLICY_NAME: string;

@@ -3,6 +3,40 @@ import insuranceBussinessService from "../services/bussinessServices/interfaces/
 
 class InsuranceController {
 
+async addInsuranceandUpdateByGuid(req, res, next) {
+    try {
+        let guid = req.body.insuranceGuid || req.body.insurance_guid;
+        guid =
+            guid &&
+            guid !== "null" &&
+            guid !== "undefined" &&
+            guid !== ""
+                ? guid
+                : null;
+        const payload = {
+            insurance_guid: guid,
+            name: req.body.NAME,
+            policy_name: req.body.POLICY_NAME,
+            carrier_code: req.body.CARRIER_CODE,
+            plan_type: req.body.PLAN_TYPE,
+            policy_number: req.body.POLICY_NUMBER,
+            group_number: req.body.GROUP_NUMBER,
+            relationship: req.body.RELATIONSHIP,
+            created_by: req.body.created_by || "sa_user",
+        };
+     const result = await insuranceBussinessService.addOrUpdateInsurance(payload);
+       return res.json({
+            success: true,
+            insurance_guid: result.insurance_guid,
+            message: result.message
+        });
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+
  async getinsuranceByGuid(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
         const service = insuranceBussinessService; 
@@ -16,7 +50,7 @@ class InsuranceController {
         return next(error);
     }
  
-}
+   }
 
 
 async getAllInsurances(req: Request, res: Response, next: NextFunction): Promise<any> {
@@ -24,7 +58,10 @@ async getAllInsurances(req: Request, res: Response, next: NextFunction): Promise
         const service = insuranceBussinessService;
         const pageNumber: number = Number(req.params.pagenumber);
         const pageSize: number = Number(req.params.pagesize);
-        const result = await service.getAllInsurances(pageNumber, pageSize);
+        const search: string = req.body.Search as string || '';
+        const SortColumn: string = req.body.SortColumn as string || 'created_dt';
+        const SortDirection: string = req.body.SortDirection as string || 'DESC';   
+        const result = await service.getAllInsurances(pageNumber, pageSize,search,SortColumn,SortDirection);
         return res.json({ result });
     } catch (error) {
         return next(error);

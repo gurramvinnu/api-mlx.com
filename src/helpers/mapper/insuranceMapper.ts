@@ -5,6 +5,7 @@ import type { insurance } from "../../models/insurance.js";
 class InsuranceMapper {
     mapToInsurance(dbRecord: any): insurance {
         return {
+            INSURANCE_GUID: dbRecord.insurance_guid,
             INSURANCE_ID: dbRecord.insurance_id,
             NAME: dbRecord.name,
             POLICY_NAME: dbRecord.policy_name,
